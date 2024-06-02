@@ -1,0 +1,429 @@
+2024-06-02 01:09:51,917 Callback Server Starting
+2024-06-02 01:09:51,917 Socket listening on ('127.0.0.1', 37581)
+2024-06-02 01:10:04,266 Python Server ready to receive messages
+2024-06-02 01:10:04,267 Received command c on object id p0
+2024-06-02 01:10:26,743 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:20:00
+2024-06-02 01:10:26,744 The number of arrivals to Citigroup has doubled from 0 to 15 at 2015-12-01 07:10:00
+2024-06-02 01:10:26,745 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:50:00
+2024-06-02 01:10:26,745 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 14:10:00
+2024-06-02 01:10:26,745 The number of arrivals to Citigroup has doubled from 0 to 18 at 2015-12-01 07:00:00
+2024-06-02 01:10:26,745 The number of arrivals to Citigroup has doubled from 0 to 16 at 2015-12-01 09:10:00
+2024-06-02 01:10:26,745 The number of arrivals to Citigroup has doubled from 0 to 11 at 2015-12-01 08:10:00
+2024-06-02 01:10:26,746 The number of arrivals to Goldman Sachs has doubled from 0 to 11 at 2015-12-01 09:30:00
+2024-06-02 01:10:26,746 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 10:00:00
+2024-06-02 01:10:26,746 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:00:00
+2024-06-02 01:10:26,746 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:30:00
+2024-06-02 01:10:26,746 The number of arrivals to Goldman Sachs has doubled from 0 to 10 at 2015-12-01 09:40:00
+2024-06-02 01:10:26,746 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:40:00
+2024-06-02 01:10:26,747 The number of arrivals to Citigroup has doubled from 0 to 13 at 2015-12-01 06:50:00
+2024-06-02 01:10:26,747 The number of arrivals to Citigroup has doubled from 0 to 14 at 2015-12-01 08:30:00
+2024-06-02 01:17:10,546 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+2024-06-02 01:17:10,546 Closing down clientserver connection
+2024-06-02 01:17:10,547 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 01:17:10,549 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+2024-06-02 01:17:10,551 Closing down clientserver connection
+2024-06-02 01:17:10,551 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 01:17:10,551 Closing down clientserver connection
+2024-06-02 01:17:10,605 Closing down clientserver connection
+2024-06-02 15:32:15,579 Callback Server Starting
+2024-06-02 15:32:15,579 Socket listening on ('127.0.0.1', 38661)
+2024-06-02 15:32:26,179 Python Server ready to receive messages
+2024-06-02 15:32:26,179 Received command c on object id p0
+2024-06-02 15:32:48,059 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:20:00
+2024-06-02 15:32:48,059 The number of arrivals to Citigroup has doubled from 0 to 15 at 2015-12-01 07:10:00
+2024-06-02 15:32:48,059 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:50:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 14:10:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 18 at 2015-12-01 07:00:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 16 at 2015-12-01 09:10:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 11 at 2015-12-01 08:10:00
+2024-06-02 15:32:48,060 The number of arrivals to Goldman Sachs has doubled from 0 to 11 at 2015-12-01 09:30:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 10:00:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:00:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:30:00
+2024-06-02 15:32:48,060 The number of arrivals to Goldman Sachs has doubled from 0 to 10 at 2015-12-01 09:40:00
+2024-06-02 15:32:48,060 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:40:00
+2024-06-02 15:32:48,061 The number of arrivals to Citigroup has doubled from 0 to 13 at 2015-12-01 06:50:00
+2024-06-02 15:32:48,061 The number of arrivals to Citigroup has doubled from 0 to 14 at 2015-12-01 08:30:00
+2024-06-02 15:34:04,269 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+2024-06-02 15:34:04,269 Closing down clientserver connection
+2024-06-02 15:34:04,270 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:34:04,273 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+2024-06-02 15:34:04,276 Closing down clientserver connection
+2024-06-02 15:34:04,276 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:34:04,277 Closing down clientserver connection
+2024-06-02 15:34:04,351 Closing down clientserver connection
+2024-06-02 15:43:18,684 Closing down clientserver connection
+2024-06-02 15:45:33,098 Callback Server Starting
+2024-06-02 15:45:33,098 Socket listening on ('127.0.0.1', 45055)
+2024-06-02 15:45:42,515 Python Server ready to receive messages
+2024-06-02 15:45:42,515 Received command c on object id p0
+2024-06-02 15:46:01,858 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:20:00
+2024-06-02 15:46:01,858 The number of arrivals to Citigroup has doubled from 0 to 15 at 2015-12-01 07:10:00
+2024-06-02 15:46:01,858 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:50:00
+2024-06-02 15:46:01,858 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 14:10:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 18 at 2015-12-01 07:00:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 16 at 2015-12-01 09:10:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 11 at 2015-12-01 08:10:00
+2024-06-02 15:46:01,859 The number of arrivals to Goldman Sachs has doubled from 0 to 11 at 2015-12-01 09:30:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 10:00:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:00:00
+2024-06-02 15:46:01,859 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:30:00
+2024-06-02 15:46:01,860 The number of arrivals to Goldman Sachs has doubled from 0 to 10 at 2015-12-01 09:40:00
+2024-06-02 15:46:01,860 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:40:00
+2024-06-02 15:46:01,860 The number of arrivals to Citigroup has doubled from 0 to 13 at 2015-12-01 06:50:00
+2024-06-02 15:46:01,860 The number of arrivals to Citigroup has doubled from 0 to 14 at 2015-12-01 08:30:00
+2024-06-02 15:48:04,602 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+2024-06-02 15:48:04,603 Closing down clientserver connection
+2024-06-02 15:48:04,603 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:48:04,605 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+2024-06-02 15:48:04,607 Closing down clientserver connection
+2024-06-02 15:48:04,607 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:48:04,607 Closing down clientserver connection
+2024-06-02 15:48:04,650 Closing down clientserver connection
+2024-06-02 15:48:12,134 Callback Server Starting
+2024-06-02 15:48:12,134 Socket listening on ('127.0.0.1', 33329)
+2024-06-02 15:48:25,898 Python Server ready to receive messages
+2024-06-02 15:48:25,898 Received command c on object id p0
+2024-06-02 15:49:04,894 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:20:00
+2024-06-02 15:49:04,894 The number of arrivals to Citigroup has doubled from 0 to 15 at 2015-12-01 07:10:00
+2024-06-02 15:49:04,894 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:50:00
+2024-06-02 15:49:04,894 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 14:10:00
+2024-06-02 15:49:04,894 The number of arrivals to Citigroup has doubled from 0 to 18 at 2015-12-01 07:00:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 16 at 2015-12-01 09:10:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 11 at 2015-12-01 08:10:00
+2024-06-02 15:49:04,895 The number of arrivals to Goldman Sachs has doubled from 0 to 11 at 2015-12-01 09:30:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 10:00:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:00:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:30:00
+2024-06-02 15:49:04,895 The number of arrivals to Goldman Sachs has doubled from 0 to 10 at 2015-12-01 09:40:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:40:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 13 at 2015-12-01 06:50:00
+2024-06-02 15:49:04,895 The number of arrivals to Citigroup has doubled from 0 to 14 at 2015-12-01 08:30:00
+2024-06-02 15:49:07,372 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+2024-06-02 15:49:07,373 Closing down clientserver connection
+2024-06-02 15:49:07,373 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:49:07,374 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+2024-06-02 15:49:07,375 Closing down clientserver connection
+2024-06-02 15:49:07,375 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:49:07,375 Closing down clientserver connection
+2024-06-02 15:49:07,436 Closing down clientserver connection
+2024-06-02 15:51:33,037 Closing down clientserver connection
+2024-06-02 15:51:55,940 Closing down clientserver connection
+2024-06-02 15:52:11,971 Callback Server Starting
+2024-06-02 15:52:11,972 Socket listening on ('127.0.0.1', 44213)
+2024-06-02 15:52:27,014 Python Server ready to receive messages
+2024-06-02 15:52:27,014 Received command c on object id p0
+2024-06-02 15:53:08,487 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:20:00
+2024-06-02 15:53:08,487 The number of arrivals to Citigroup has doubled from 0 to 15 at 2015-12-01 07:10:00
+2024-06-02 15:53:08,487 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:50:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 14:10:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 18 at 2015-12-01 07:00:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 16 at 2015-12-01 09:10:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 11 at 2015-12-01 08:10:00
+2024-06-02 15:53:08,488 The number of arrivals to Goldman Sachs has doubled from 0 to 11 at 2015-12-01 09:30:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 10:00:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:00:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 10 at 2015-12-01 07:30:00
+2024-06-02 15:53:08,488 The number of arrivals to Goldman Sachs has doubled from 0 to 10 at 2015-12-01 09:40:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 12 at 2015-12-01 09:40:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 13 at 2015-12-01 06:50:00
+2024-06-02 15:53:08,488 The number of arrivals to Citigroup has doubled from 0 to 14 at 2015-12-01 08:30:00
+2024-06-02 15:53:12,271 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+2024-06-02 15:53:12,272 Closing down clientserver connection
+2024-06-02 15:53:12,272 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+RuntimeError: reentrant call inside <_io.BufferedReader name=4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:53:12,273 Error while receiving.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+2024-06-02 15:53:12,274 Closing down clientserver connection
+2024-06-02 15:53:12,274 Exception while sending command.
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o12.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/april/spark-3.5.1-bin-hadoop3/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+2024-06-02 15:53:12,274 Closing down clientserver connection
+2024-06-02 15:53:12,353 Closing down clientserver connection
+2024-06-02 15:55:07,293 Closing down clientserver connection
