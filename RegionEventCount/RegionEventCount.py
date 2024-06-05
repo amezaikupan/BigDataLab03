@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+# !pip install shapely pyspark
 from shapely.geometry import Point, Polygon
 
 from pyspark.sql import SparkSession
@@ -23,12 +24,7 @@ def clear_directory(path):
 def is_in_polygon(lon, lat, bounding_box):
     point = Point(lon, lat)
     polygon = Polygon(bounding_box)
-
-    if polygon.contains(point) or polygon.touches(point):
-        return True
-    else:
-        return False
-
+    return polygon.contains(point)
 
 is_goldman_udf = udf(lambda lon, lat: is_in_polygon(lon, lat, goldman), BooleanType())
 is_citigroup_udf = udf(lambda lon, lat: is_in_polygon(lon, lat, citigroup), BooleanType())
@@ -139,4 +135,7 @@ if __name__ == "__main__":
 
     query.awaitTermination(timeout=300)
 
-# spark-submit RegionEventCount.py
+# Commands for TrendingArrivals directory:
+# Run the code:
+#   spark-submit RegionEventCount.py
+# Note: Please wait about 300s for the program to run. The log is update in output.log

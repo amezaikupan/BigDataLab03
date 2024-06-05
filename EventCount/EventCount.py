@@ -74,7 +74,7 @@ if __name__ == "__main__":
         )
 
     window_duration = "1 hour"
-  
+    
     # Aggregate event count per hou
     event_count_df = (
         df
@@ -103,4 +103,7 @@ if __name__ == "__main__":
 
     spark.stop()
 
+# Commands for TrendingArrivals directory:
+# Run the code:
 #   spark-submit EventCount.py
+# Note: Please wait about 300s for the program to run. The log is update in output.log

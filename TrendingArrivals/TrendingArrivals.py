@@ -78,7 +78,7 @@ if __name__ == "__main__":
     clear_directory(checkpoint_path)
 
     # Configure logging
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', handlers=[logging.FileHandler("/home/caokhoi/spark-3.5.1-bin-hadoop3/BigDataLab03/TrendingArrivals/output.log"), logging.StreamHandler(sys.stdout)])
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', handlers=[logging.StreamHandler(sys.stdout)])
     logger = logging.getLogger()
         
     spark = (
@@ -143,8 +143,7 @@ if __name__ == "__main__":
             count(when(col('isAttendingCitigroup'), 1)).alias('attendCitigroupCount')
             )
         .orderBy('window')
-        )
-        
+        )        
 
     query = (
         window_df
@@ -159,7 +158,11 @@ if __name__ == "__main__":
 
     query.awaitTermination(timeout=300)
 
-# Commandline, from TrendingArrivals directory:
-#  spark-submit TrendingArrivals.py --input ../taxi-data --checkpoint Checkpoint --output Output &> output.log
+# Commands for TrendingArrivals directory:
+# Run the code:
+#   spark-submit TrendingArrivals.py --input ../taxi-data --checkpoint Checkpoint --output Output &> output.log
+# Note: Please wait about 300s for the program to run. The log is update in output.log
 
-# cat Output/part-*/* | grep "(citigroup" 
+# To check ouput:
+#   cat Output/part-*/* | grep "(citigroup" 
+#   cat Output/part-*/* | grep "(goldman" 
