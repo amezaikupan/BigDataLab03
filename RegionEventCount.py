@@ -6,29 +6,6 @@ from pyspark.sql.functions import split, date_format, window, to_timestamp
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, IntegerType, BooleanType
 # from pyspark.sql.streaming.DataStreamWriter import outputMode
 
-# # For checking location
-# def point_inside_polygon(x, y, poly):
-#     """
-#     Determine if a point is inside a given polygon or not.
-#     Polygon is a list of (x, y) pairs.
-#     """
-#     n = len(poly)
-#     inside = False
-
-#     p1x, p1y = poly[0]
-#     for i in range(n + 1):
-#         p2x, p2y = poly[i % n]
-#         if y > min(p1y, p2y):
-#             if y <= max(p1y, p2y):
-#                 if x <= max(p1x, p2x):
-#                     if p1y != p2y:
-#                         xints = (y - p1y) * (p2x - p1x) / (p2y - p1y) + p1x
-#                     if p1x == p2x or x <= xints:
-#                         inside = not inside
-#         p1x, p1y = p2x, p2y
-
-#     return inside
-
 # UDF to check if a point is inside a polygon
 def point_inside_polygon_udf(x, y, poly):
     def point_inside_polygon(x_val, y_val):
@@ -67,18 +44,18 @@ if __name__ == "__main__":
     
     # Read all the csv files written atomically in a directory
     userSchema = StructType([
-    StructField("type", StringType(), True),
-    StructField("VendorID", StringType(), True),
-    StructField("pickup_datetime", TimestampType(), True),
-    StructField("dropoff_datetime", TimestampType(), True),
-    StructField("unused_feature1", StringType(), True),
-    StructField("unused_feature2", StringType(), True),
-    StructField("pickup_longitude", DoubleType(), True),
-    StructField("pickup_latitude", DoubleType(), True),
-    StructField("dropoff_longitude_green", DoubleType(), True),
-    StructField("dropoff_latitude_green", DoubleType(), True),
-    StructField("dropoff_longitude_yellow", DoubleType(), True),
-    StructField("dropoff_latitude_yellow", DoubleType(), True),   
+        StructField("type", StringType(), True),
+        StructField("VendorID", StringType(), True),
+        StructField("pickup_datetime", TimestampType(), True),
+        StructField("dropoff_datetime", TimestampType(), True),
+        StructField("unused_feature1", StringType(), True),
+        StructField("unused_feature2", StringType(), True),
+        StructField("pickup_longitude", DoubleType(), True),
+        StructField("pickup_latitude", DoubleType(), True),
+        StructField("dropoff_longitude_green", DoubleType(), True),
+        StructField("dropoff_latitude_green", DoubleType(), True),
+        StructField("dropoff_longitude_yellow", DoubleType(), True),
+        StructField("dropoff_latitude_yellow", DoubleType(), True),   
     ])
     
     df = spark \
@@ -91,13 +68,12 @@ if __name__ == "__main__":
     # Location
     goldman = [(-74.0141012, 40.7152191), (-74.013777, 40.7152275), (-74.0141027, 40.7138745), (-74.0144185, 40.7140753)]
     citigroup = [(-74.011869, 40.7217236), (-74.009867, 40.721493), (-74.010140,40.720053), (-74.012083, 40.720267)]
+    
     yellow_taxi_filtered_df = df \
         .filter(col('type') == 'yellow')\
         .withColumn('isAttendingRegionalEvent', 
             point_inside_polygon_udf(col('dropoff_longitude_yellow'), col('dropoff_latitude_yellow'), goldman) |
-            point_inside_polygon_udf(col('dropoff_longitude_yellow'), col('dropoff_latitude_yellow'), citigroup))
-        
-        
+            point_inside_polygon_udf(col('dropoff_longitude_yellow'), col('dropoff_latitude_yellow'), citigroup))      
     
     green_taxi_filtered_df = df \
         .filter(col('type') == 'green')\
@@ -131,6 +107,7 @@ if __name__ == "__main__":
         .outputMode("complete")\
         .format('console')\
         .option("truncate", "false") \
+        .option('numRows', 100)\
         .trigger(processingTime="10 minutes")\
         .start()
 

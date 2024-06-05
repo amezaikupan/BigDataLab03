@@ -50,18 +50,18 @@ if __name__ == "__main__":
     
     # Read all the csv files written atomically in a directory
     userSchema = StructType([
-    StructField("type", StringType(), True),
-    StructField("VendorID", StringType(), True),
-    StructField("pickup_datetime", TimestampType(), True),
-    StructField("dropoff_datetime", TimestampType(), True),
-    StructField("unused_feature1", StringType(), True),
-    StructField("unused_feature2", StringType(), True),
-    StructField("pickup_longitude", DoubleType(), True),
-    StructField("pickup_latitude", DoubleType(), True),
-    StructField("dropoff_longitude_green", DoubleType(), True),
-    StructField("dropoff_latitude_green", DoubleType(), True),
-    StructField("dropoff_longitude_yellow", DoubleType(), True),
-    StructField("dropoff_latitude_yellow", DoubleType(), True),   
+        StructField("type", StringType(), True),
+        StructField("VendorID", StringType(), True),
+        StructField("pickup_datetime", TimestampType(), True),
+        StructField("dropoff_datetime", TimestampType(), True),
+        StructField("unused_feature1", StringType(), True),
+        StructField("unused_feature2", StringType(), True),
+        StructField("pickup_longitude", DoubleType(), True),
+        StructField("pickup_latitude", DoubleType(), True),
+        StructField("dropoff_longitude_green", DoubleType(), True),
+        StructField("dropoff_latitude_green", DoubleType(), True),
+        StructField("dropoff_longitude_yellow", DoubleType(), True),
+        StructField("dropoff_latitude_yellow", DoubleType(), True),   
     ])
     
     df = spark \
@@ -102,8 +102,7 @@ if __name__ == "__main__":
         .groupBy(window("dropoff_datetime", window_duration))\
         .agg(count(when(col("isAttendingGoldman"), 1)).alias("attendGoldmanCount"), 
             count(when(col("isAttendingCitigroup"), 1)).alias("attendCitigroupCount"))\
-        .filter((col("attendGoldmanCount") >= 5) | (col("attendCitigroupCount") >= 5))\
-        # .orderBy('window')\
+        .orderBy('window')\
         
     output_path = f"/home/april/BigDataLab03/EventCountOutput/output-data"
     checkpoint_path = f"/home/april/BigDataLab03/EventCountOutput/checkpoint"
@@ -117,31 +116,39 @@ if __name__ == "__main__":
     
     
     # Detect spikes
-    def detect_spikes(batch_df, batch_id, previous_state={}):
+    def detect_spikes(batch_df, batch_id):
+        previous_state={}     
+        
         if not batch_df.isEmpty():
             current_counts = batch_df.collect()
+            first_row = current_counts[0]
+            previous_state[first_row['window']['start']] = {'goldman': 0, 'citigroup': 0}
+            
+            # print(current_counts)
             for row in current_counts:
+                window_start = row['window']['start']
                 window_end = row['window']['end']
                 goldman_count = row['attendGoldmanCount']
                 citigroup_count = row['attendCitigroupCount']
                 
+                
                 if window_end not in previous_state:
                     previous_state[window_end] = {'goldman': 0, 'citigroup': 0}
                 
-                
-                goldman_spike = goldman_count >= 2 * previous_state[window_end]['goldman']
-                citigroup_spike = citigroup_count >= 2 * previous_state[window_end]['citigroup']
+                goldman_spike = goldman_count >= 2 * previous_state[window_start]['goldman']
+                citigroup_spike = citigroup_count >= 2 * previous_state[window_start]['citigroup']
                 
                 if goldman_spike and goldman_count >= 10:
-                    # print(f"The number of arrivals to Goldman Sachs has doubled from {previous_state[window_end]['goldman']} to {goldman_count} at {window_end}")
-                    logger.info(f"The number of arrivals to Goldman Sachs has doubled from {previous_state[window_end]['goldman']} to {goldman_count} at {window_end}")
+                    print(f"The number of arrivals to Goldman Sachs has doubled from {previous_state[window_start]['goldman']} to {goldman_count} at {window_end}")
+                    # logger.info(f"The number of arrivals to Goldman Sachs has doubled from {previous_state[window_end]['goldman']} to {goldman_count} at {window_end}")
                     
                 if citigroup_spike and citigroup_count >= 10:
-                    # print(f"The number of arrivals to Citigroup has doubled from {previous_state[window_end]['citigroup']} to {citigroup_count} at {window_end}")
-                    logger.info(f"The number of arrivals to Citigroup has doubled from {previous_state[window_end]['citigroup']} to {citigroup_count} at {window_end}")
+                    print(f"The number of arrivals to Citigroup has doubled from {previous_state[window_start]['citigroup']} to {citigroup_count} at {window_end}")
+                    # logger.info(f"The number of arrivals to Citigroup has doubled from {previous_state[window_end]['citigroup']} to {citigroup_count} at {window_end}")
                     
                 previous_state[window_end]['goldman'] = goldman_count
-                previous_state[window_end]['citigroup'] = citigroup_count
+                previous_state[window_end]['citigroup'] = citigroup_count               
+                
 
     # Use foreachBatch to apply the spike detection logic
     # query = window_df \
@@ -150,7 +157,7 @@ if __name__ == "__main__":
     #     .foreachBatch(detect_spikes) \
     #     .start()
     
-    window_df.writeStream.format("csv").option("checkpointLocation", checkpoint_path).toTable("myTable").trigger(processingTime="10 minutes")
+    # window_df.writeStream.format("csv").option("checkpointLocation", checkpoint_path).toTable("myTable").trigger(processingTime="10 minutes")
 
     
     query = window_df\
@@ -158,7 +165,7 @@ if __name__ == "__main__":
             .outputMode("complete")\
             .format('console')\
             .option("truncate", "false") \
-            .foreachBatch(detect_spikes) \
+            .option('numRows', 100000)\
             .trigger(processingTime="10 minutes")\
             .start()
 
@@ -174,3 +181,29 @@ if __name__ == "__main__":
 
     # change_query.awaitTermination()
     query.awaitTermination(timeout=600)
+    
+    
+    # window_df.writeStream.format("csv").option("checkpointLocation", checkpoint_path).toTable("myTable").trigger(processingTime="10 minutes")
+
+    
+    # query = window_df\
+    #         .writeStream\
+    #         .outputMode("complete")\
+    #         .format('console')\
+    #         .option("truncate", "false") \
+    #         .foreachBatch(detect_spikes) \
+    #         .trigger(processingTime="10 minutes")\
+    #         .start()
+
+    # # change_query = window_df \
+    # #     .writeStream \
+    # #     .outputMode("append") \
+    # #     .format("csv") \
+    # #     .option("path", output_path) \
+    # #     .option("checkpointLocation", checkpoint_path) \
+    # #     .option("truncate", "false") \
+    # #     .trigger(processingTime="10 minutes") \
+    # #     .start()
+
+    # # change_query.awaitTermination()
+    # query.awaitTermination(timeout=600)
