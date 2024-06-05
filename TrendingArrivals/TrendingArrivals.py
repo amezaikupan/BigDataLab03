@@ -3,29 +3,26 @@ import sys
 import shutil
 import logging
 from shapely.geometry import Point, Polygon
+
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode, hour, col, count, udf
-from pyspark.sql.functions import split, date_format, window, to_timestamp, when
-from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, IntegerType, BooleanType
-# from pyspark.sql.streaming.DataStreamWriter import outputMode
+from pyspark.sql.functions import col, count, udf, window, when
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, BooleanType
 
 # Clear the specified directory if it exists.
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
 
+def is_in_polygon(lon, lat, bounding_box):
+    point = Point(lon, lat)
+    polygon = Polygon(bounding_box)
+    return polygon.contains(point)
 
 goldman = [(-74.0141012, 40.7152191), (-74.013777, 40.7152275), (-74.0141027, 40.7138745), (-74.0144185, 40.7140753)]
 citigroup = [(-74.011869, 40.7217236), (-74.009867, 40.721493), (-74.010140,40.720053), (-74.012083, 40.720267)]
 
-def is_in_polygon(lon, lat, bbox):
-    point = Point(lon, lat)
-    polygon = Polygon(bbox)
-    return polygon.contains(point)
-
 is_goldman_udf = udf(lambda lon, lat: is_in_polygon(lon, lat, goldman), BooleanType())
 is_citigroup_udf = udf(lambda lon, lat: is_in_polygon(lon, lat, citigroup), BooleanType())
-
 
 # Detect spikes
 def detect_spikes (batch_df, batch_id, previous_state={}):
@@ -70,7 +67,7 @@ def detect_spikes (batch_df, batch_id, previous_state={}):
 
 if __name__ == "__main__":
     if len(sys.argv) != 7:
-        print("Usage: spark-submit <.py file_path> --input <input_path> --checkpoint <checkpoint_path> --output <output_path>", file=sys.stderr)
+        print("Invalid command, use: spark-submit <.py file_path> --input <input_path> --checkpoint <checkpoint_path> --output <output_path>", file=sys.stderr)
         sys.exit(-1)
         
     input_path = sys.argv[sys.argv.index("--input") + 1] 
@@ -162,7 +159,7 @@ if __name__ == "__main__":
 
     query.awaitTermination(timeout=300)
 
-    # Commandline, from, the home directory:
-    #  spark-submit BigDataLab03/TrendingArrivals/TrendingArrivals.py --input BigDataLab03/Input/taxi-data --checkpoint BigDataLab03/TrendingArrivals/Checkpoint --output BigDataLab03/TrendingArrivals/Output &> BigDataLab03/TrendingArrivals/output.log
+# Commandline, from TrendingArrivals directory:
+#  spark-submit TrendingArrivals.py --input ../taxi-data --checkpoint Checkpoint --output Output &> output.log
 
-# cat BigDataLab03/TrendingArrivals/Output/part-*/* | grep "(citigroup" 
+# cat Output/part-*/* | grep "(citigroup" 

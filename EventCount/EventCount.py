@@ -1,21 +1,22 @@
+import os
 import sys
 import shutil
-import os
+
 import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode, hour, col, count
 from pyspark.sql.functions import split, date_format, window
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, IntegerType
 
-input_data_path = f'BigDataLab03/Input/taxi-data'
-base_output_path = f'BigDataLab03/EventCount/Output'
-checkpoint_path = f'BigDataLab03/EventCount/Checkpoint'
+input_data_path = f'../taxi-data'
+base_output_path = f'Output'
+checkpoint_path = f'Checkpoint'
 
 # Clear the specified directory if it exists.
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
-
+        
 # Generate output path based on window end time
 def get_output_path(end_time):
     end_hour_ms = (end_time.hour * 3600 * 1000)
@@ -41,7 +42,7 @@ def writing_result(batch_df, batch_id):
     
 if __name__ == "__main__":
     if len(sys.argv) != 1:
-        print("Invalid command line. Use: spark-submit <file_path>", file=sys.stderr)
+        print("Invalid command. Use: spark-submit <file_path>", file=sys.stderr)
         sys.exit(-1)
         
     # Initialize a Spark session
@@ -102,4 +103,4 @@ if __name__ == "__main__":
 
     spark.stop()
 
-#   spark-submit BigDataLab03/EventCount/EventCount.py
+#   spark-submit EventCount.py
