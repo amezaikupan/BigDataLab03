@@ -156,7 +156,7 @@ if __name__ == "__main__":
         .start()
         )
 
-    query.awaitTermination(timeout=300)
+    query.awaitTermination(timeout=100)
 
 # Commands for TrendingArrivals directory:
 # Run the code:
